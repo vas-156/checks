@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Чеки</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+    <style>
+        h1 {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 40vh;
+            color: rgba(255,255,255,0.7);
+            font-family: 'Trebuchet MS', Helvetica, sans-serif;
+            letter-spacing: 0.7em;
+            font-size: 20pt;
+            font-weight: normal;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 5px 3px #ff0;
+        }
+        .small {
+            text-transform: none;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.5em;
+            letter-spacing: 0.3em;
+            line-height: 0.5em;
+        }
+        .aurora {
+            background: #000;
+            position: relative;
+        }
+        .aurora:before,
+        .aurora:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            border-radius: 100%;
+            opacity: 0.18;
+        }
+        .aurora:before {
+            box-shadow: 0 0 35vmax 35vmax #f00;
+            animation: hue 5s 0s linear infinite, move1 10s 0s linear infinite;
+        }
+        .aurora:after {
+            box-shadow: 0 0 35vmax 35vmax #0ff;
+            animation: hue 10s 0s linear infinite, move2 20s 0s linear infinite;
+        }
+        @-moz-keyframes hue {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+        @-webkit-keyframes hue {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+        @-o-keyframes hue {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+        @keyframes hue {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+        @-moz-keyframes move1 {
+            0% {
+                top: 0vh;
+                left: 50vw;
+            }
+            25% {
+                left: 0vw;
+            }
+            50% {
+                top: 100vh;
+            }
+            75% {
+                left: 100vw;
+            }
+            100% {
+                top: 0vh;
+                left: 50vw;
+            }
+        }
+        @-webkit-keyframes move1 {
+            0% {
+                top: 0vh;
+                left: 50vw;
+            }
+            25% {
+                left: 0vw;
+            }
+            50% {
+                top: 100vh;
+            }
+            75% {
+                left: 100vw;
+            }
+            100% {
+                top: 0vh;
+                left: 50vw;
+            }
+        }
+        @-o-keyframes move1 {
+            0% {
+                top: 0vh;
+                left: 50vw;
+            }
+            25% {
+                left: 0vw;
+            }
+            50% {
+                top: 100vh;
+            }
+            75% {
+                left: 100vw;
+            }
+            100% {
+                top: 0vh;
+                left: 50vw;
+            }
+        }
+        @keyframes move1 {
+            0% {
+                top: 0vh;
+                left: 50vw;
+            }
+            25% {
+                left: 0vw;
+            }
+            50% {
+                top: 100vh;
+            }
+            75% {
+                left: 100vw;
+            }
+            100% {
+                top: 0vh;
+                left: 50vw;
+            }
+        }
+        @-moz-keyframes move2 {
+            0% {
+                top: 50vh;
+                left: 100vw;
+            }
+            25% {
+                top: 100vh;
+            }
+            50% {
+                left: 0vw;
+            }
+            75% {
+                top: 0vh;
+            }
+            100% {
+                top: 50vh;
+                left: 100vw;
+            }
+        }
+        @-webkit-keyframes move2 {
+            0% {
+                top: 50vh;
+                left: 100vw;
+            }
+            25% {
+                top: 100vh;
+            }
+            50% {
+                left: 0vw;
+            }
+            75% {
+                top: 0vh;
+            }
+            100% {
+                top: 50vh;
+                left: 100vw;
+            }
+        }
+        @-o-keyframes move2 {
+            0% {
+                top: 50vh;
+                left: 100vw;
+            }
+            25% {
+                top: 100vh;
+            }
+            50% {
+                left: 0vw;
+            }
+            75% {
+                top: 0vh;
+            }
+            100% {
+                top: 50vh;
+                left: 100vw;
+            }
+        }
+        @keyframes move2 {
+            0% {
+                top: 50vh;
+                left: 100vw;
+            }
+            25% {
+                top: 100vh;
+            }
+            50% {
+                left: 0vw;
+            }
+            75% {
+                top: 0vh;
+            }
+            100% {
+                top: 50vh;
+                left: 100vw;
+            }
+        }
+
+    </style>
+</head>
+
+<body id="aurora" class="aurora">
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${checks}" class="container my-5">
+                <div class="col-md-10">
+                    <div th:case="*">
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                            <tr>
+                                <th>Имя</th>
+                                <th>Цена</th>
+                                <th>Кассир</th>
+                                <th>Ред.</th>
+                                <th>Удалить</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="check : ${checks}">
+                                <td th:text="${check.name}"></td>
+                                <td th:text="${check.price}"></td>
+                                <td th:text="${check.cassir}"></td>
+                                <td><a th:href="@{/checks/edit/{id}(id=${check.id})}" class="btn btn-primary"><i
+                                        class="fas fa-user-edit ml-2"></i></a></td>
+                                <td><a th:href="@{/checks/delete/{id}(id=${check.id})}" class="btn btn-primary"><i
+                                        class="fas fa-user-times ml-2"></i></a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="my-5">
+        <a href="/checks/signup" class="btn btn-primary black"> Добавить чек</a>
+    </p>
+</div>
+
+</body>
+
+</html>
